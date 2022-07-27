@@ -22,6 +22,12 @@ nightmare
 		else {
 			console.log('The car list still appears the same.');
 		}
+		list.forEach((car) => {
+			if(car.includes('60')) {
+				title = 'Mazda CX-60 has been spotted in the car list!'
+			}
+		})
+
 		console.log('Car list:', list);
 
 		var transporter = nodemailer.createTransport({
