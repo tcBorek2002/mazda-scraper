@@ -1,5 +1,6 @@
 const Nightmare = require('nightmare')
 const nightmare = Nightmare({ show: false})
+var nodemailer = require('nodemailer');
 
 nightmare
 	.goto('https://www.mazda.nl/services/handleidingen/')
@@ -11,7 +12,40 @@ nightmare
 	)
 	.end()
 	.then((list) => {
-		console.log('List:', list)
+		let title = 'The Mazda list has been checked, no changes';
+
+		if(list.length !== 8) {
+			console.log('The Mazda car list has changed!');
+			title = 'The Mazda manual list has changed!';
+		}
+		else {
+			console.log('The car list still appears the same.');
+		}
+		console.log('Car list:', list);
+
+		var transporter = nodemailer.createTransport({
+			service: 'gmail',
+			auth: {
+			  user: 'borekbandell@gmail.com',
+			  pass: 'nwylphinruoakmnc'
+			}
+		  });
+		  
+		  var mailOptions = {
+			from: 'borekbandell@gmail.com',
+			to: 'borekbandell@gmail.com',
+			subject: title,
+			text: 'This is the list: ' + list.toString()
+		  };
+		  
+		  transporter.sendMail(mailOptions, function(error, info){
+			if (error) {
+			  console.log(error);
+			} else {
+			  console.log('Email sent: ' + info.response);
+			}
+		  });
+
 	})
 	.catch((error) => {
 		console.error('Search failed:', error)
