@@ -2,6 +2,7 @@ const Nightmare = require('nightmare')
 const nightmare = Nightmare({ show: false})
 var nodemailer = require('nodemailer');
 
+console.log('Starting execution');
 nightmare
 	.goto('https://www.mazda.nl/services/handleidingen/')
     .click('#onetrust-accept-btn-handler')
