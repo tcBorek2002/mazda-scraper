@@ -4,9 +4,10 @@
   "description": "",
   "main": "scraper.js",
   "scripts": {
-    "start": "node scraper.js",
-    "test": "node scraper.js"
+    "start": "node main.js",
+    "test": "node main.js"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
