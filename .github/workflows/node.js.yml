@@ -5,8 +5,8 @@ name: Run scraper script
 
 on:
   schedule:
-    - cron: "0 8 * * *"
-    - cron: "0 20 * * *"
+    - cron: "0 6 * * *"
+    - cron: "0 18 * * *"
 
 jobs:
   build:
