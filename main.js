@@ -12,12 +12,17 @@ let error = false;
 
 console.log('Starting execution');
 lists.listNL = await ScrapeWebsite(MazdaWebsites.nl);
-// lists.listDE = await ScrapeWebsite(MazdaWebsites.de);
+//lists.listDE = await ScrapeWebsite(MazdaWebsites.de);
 // lists.listUK = await ScrapeWebsite(MazdaWebsites.uk);
 
-if(lists.listNL.length === 0) {
-    error = true;
-    title = 'Mazda scraper NL failed.';
+if(lists.listNL.length !== 8) {
+    if(lists.listNL.length === 0) {
+        error = true;
+        title = 'Mazda scraper NL failed.';
+    }
+    else {
+        title = 'One of the Mazda lists has changed!';
+    }
 }
 if(lists.listDE.length === 1) {
     if(error) {
@@ -50,4 +55,4 @@ for(const list in lists) {
 
 console.log('Sending email with title: ', title);
 console.log('and description: ', description);
-SendEmail(title, description);
+//SendEmail(title, description);
