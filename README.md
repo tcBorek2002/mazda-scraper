@@ -2,7 +2,7 @@
 #### This script checks the Mazda website to check for new cars added to the list of user manuals.
 
 ## To run:
-Make sure to have npm installed on your pc. Go to the config.js file. Change the EmailConfig class to contain your email address, the (app specific) email password and last email service (ex: gmail). For more information on the emailing take a look at nodemailer.
+Make sure to have npm installed on your pc. Go to the config.js file. Change the EmailConfig class to contain your email address, the (app specific) email password and email service (ex: gmail). For more information on the emailing take a look at nodemailer.
 Then run the following commands:
 - npm install
 - npm start
