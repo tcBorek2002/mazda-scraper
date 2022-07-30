@@ -55,4 +55,4 @@ for(const list in lists) {
 
 console.log('Sending email with title: ', title);
 console.log('and description: ', description);
-//SendEmail(title, description);
+SendEmail(title, description);
