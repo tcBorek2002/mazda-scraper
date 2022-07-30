@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { EmailConfig } from './config.js';
+import { EmailConfig } from './config/config.js';
 
 export function SendEmail (title, content) {
     var transporter = nodemailer.createTransport({

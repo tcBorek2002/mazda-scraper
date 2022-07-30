@@ -1,5 +1,5 @@
 import { SendEmail } from './emailservice.js';
-import { MazdaWebsites } from './config.js';
+import { MazdaWebsites } from './config/config.js';
 import { ScrapeWebsite } from './scraper.js';
 
 let title = 'The Mazda list has been checked, no changes';
