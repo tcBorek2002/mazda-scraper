@@ -9,11 +9,12 @@ let lists = {
     listUK: [],
 }
 let error = false;
+let changed = false;
 
 console.log('Starting execution');
-lists.listNL = await ScrapeWebsite(MazdaWebsites.nl);
-//lists.listDE = await ScrapeWebsite(MazdaWebsites.de);
-// lists.listUK = await ScrapeWebsite(MazdaWebsites.uk);
+lists.listNL = await ScrapeWebsite(MazdaWebsites.nl, false);
+lists.listDE = await ScrapeWebsite(MazdaWebsites.de, false);
+lists.listUK = await ScrapeWebsite(MazdaWebsites.uk, true);
 
 if(lists.listNL.length !== 8) {
     if(lists.listNL.length === 0) {
@@ -21,26 +22,41 @@ if(lists.listNL.length !== 8) {
         title = 'Mazda scraper NL failed.';
     }
     else {
-        title = 'One of the Mazda lists has changed!';
+        changed = true;
     }
 }
-if(lists.listDE.length === 1) {
-    if(error) {
-        title = 'Mazda scraper NL and DE failed';
+if(lists.listDE.length !== 9) {
+    if(lists.listDE.length === 0) {
+        if(error) {
+            title = 'Mazda scraper NL and DE failed';
+        }
+        else {
+            title = 'Mazda scraper DE failed';
+        }
+        error = true;
     }
     else {
-        title = 'Mazda scraper DE failed';
+        changed = true;
     }
-    error = true;
 }
-if(lists.listUK.length === 1) {
-    if(error) {
-        title = 'Multiple Mazda scrapers failed';
+if(lists.listUK.length !== 9) {
+    if(lists.listUK.length === 0) {
+        if(error) {
+            title = 'Multiple Mazda scrapers failed';
+        }
+        else {
+            title = 'Mazda scraper UK failed';
+        }
+        error = true;
     }
     else {
-        title = 'Mazda scraper UK failed'
+        changed = true;
     }
-    error = true;
+}
+if(!error) {
+    if(changed) {
+        title = 'At least one of the Mazda manual lists has changed!';
+    }
 }
 let listsString = 'NL: ' + lists.listNL.toString() + '\nDE: ' + lists.listDE.toString() + '\nUK: ' + lists.listUK.toString();
 let description = error ? 'The Mazda scraper ran but experienced problems. These are all the lists:\n' + listsString : 'The Mazda scraper ran without any problems. These are all the lists:\n' + listsString;
@@ -55,4 +71,4 @@ for(const list in lists) {
 
 console.log('Sending email with title: ', title);
 console.log('and description: ', description);
-//SendEmail(title, description);
+SendEmail(title, description);
