@@ -5,7 +5,7 @@ export const MazdaWebsites = {
 }
 
 export const EmailConfig = {
-    address : 'borekbandell@gmail.com',
-    password : 'nwylphinruoakmnc',
-    service : 'gmail',
+    address : '',
+    password : '',
+    service : '',
 }
