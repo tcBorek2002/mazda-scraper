@@ -11,7 +11,9 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    environment: action environment
+    env:
+      EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+      EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
 
     strategy:
       matrix:
