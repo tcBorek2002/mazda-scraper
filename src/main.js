@@ -12,6 +12,8 @@ let error = false;
 let changed = false;
 
 console.log('Starting execution');
+console.log(process.env.EMAIL_ADDRESS);
+console.log(process.env.EMAIL_PASSWORD);
 lists.listNL = await ScrapeWebsite(MazdaWebsites.nl, false);
 lists.listDE = await ScrapeWebsite(MazdaWebsites.de, false);
 lists.listUK = await ScrapeWebsite(MazdaWebsites.uk, true);
