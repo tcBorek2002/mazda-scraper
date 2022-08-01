@@ -5,7 +5,7 @@ export const MazdaWebsites = {
 }
 
 export const EmailConfig = {
-    address : '',
-    password : '',
-    service : '',
+    address : process.env.EMAIL_ADDRESS,
+    password : process.env.EMAIL_PASSWORD,
+    service : 'gmail',
 }
