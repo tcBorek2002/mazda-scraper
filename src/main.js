@@ -25,7 +25,7 @@ if(lists.listNL.length !== 8) {
         changed = true;
     }
 }
-if(lists.listDE.length !== 9) {
+if(lists.listDE.length !== 10) {
     if(lists.listDE.length === 0) {
         if(error) {
             title = 'Mazda scraper NL and DE failed';
@@ -61,12 +61,16 @@ if(!error) {
 let listsString = 'NL: ' + lists.listNL.toString() + '\nDE: ' + lists.listDE.toString() + '\nUK: ' + lists.listUK.toString();
 let description = error ? 'The Mazda scraper ran but experienced problems. These are all the lists:\n' + listsString : 'The Mazda scraper ran without any problems. These are all the lists:\n' + listsString;
 
-for(const list in lists) {
-    lists[list].forEach((car) => {
-				if(car.includes('60')) {
-					title = 'Mazda CX-60 has been spotted in the car list!'
-				}
-			})
+let checkLists = [lists.listNL, lists.listUK];
+// Don't check the german list anymore.
+for(const list in checkLists) {
+    if(lists[list] !== undefined) {  
+        lists[list].forEach((car) => {
+                    if(car.includes('60')) {
+                        title = 'Mazda CX-60 has been spotted in the car list!'
+                    }
+                })
+        }
 };
 
 console.log('Sending email with title: ', title);
